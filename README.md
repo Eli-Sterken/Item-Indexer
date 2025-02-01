@@ -9,7 +9,24 @@ search for the code to get the description. You can also edit and delete items i
 ## How It Works
 
 Item Indexer is built mostly using [Vue](https://vuejs.org) and [Vite](https://vite.dev). I also use Typescript for a better
-development experince. Sass is also brought in to help with styling.
+development experience. Sass is also brought in to help with styling.
+
+## How To Use
+To use Item Indexer, you can go to [item-indexer.pages.dev](https://item-indexer.pages.dev) or build it
+on your own system. To do this, open a command line to the repo directory and run the following command:
+
+```
+npm install
+```
+To start a local development server, run
+```
+npm run dev
+```
+Or to build for production, run
+```
+npx nuxt generate
+```
+this will output to the dist and .output folders.
 
 ## File Structure
 
@@ -23,9 +40,9 @@ a few main files:
   - App.vue
     - The main app file.
   - main.ts
-    - The main file the mounts the app
+    - The main file that mounts the app
   - types.ts
-    - A file contaning types, mostly for the modal dialog.
+    - A file containing types, mostly for the modal dialog.
   - components
     - A folder with all the app components
     - Search.vue
@@ -33,7 +50,7 @@ a few main files:
     - Add.vue
       - The add items component
     - Items.vue
-      - The all items component
+      - The all item's component
   - public
     - The folder for all static assets
     - favicon.ico
@@ -43,8 +60,8 @@ a few main files:
 
 # Notes
 
-1 - I will add things a footer soon, just not in the inital release.
+1 - I will add a footer soon, just not in the inital release.
 2 - Please note that your items are only saved to local storage, so they will be cleared 
-when you delete your browsers cookies and data.
+when you delete your browser's cookies and data.
 
 # Have Fun!
