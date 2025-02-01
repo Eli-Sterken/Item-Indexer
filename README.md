@@ -43,7 +43,7 @@ a few main files:
 
 # Notes
 
-1 - I will add things like a footer soon, just not in the inital release.
+1 - I will add things a footer soon, just not in the inital release.
 2 - Please note that your items are only saved to local storage, so they will be cleared 
 when you delete your browsers cookies and data.
 
