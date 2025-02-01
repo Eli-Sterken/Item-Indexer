@@ -2,6 +2,8 @@
 
 <img src="/Logo.png" alt="Item Indexer Logo" width="300" height="200">
 
+[item-indexer.pages.dev](https://item-indexer.pages.dev)
+
 Welcome to the offical Item Indexer GitHub repository! Item Indexer is a funny web app
 I made that can index items by code. You can add an item with a code and description, and then
 search for the code to get the description. You can also edit and delete items in the All items section.
