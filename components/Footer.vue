@@ -8,7 +8,7 @@
         </div>
 
         <div class="accent rel-position footer-segment">
-            <p class="main-element n-font footer-element">Quick Tips:<br><br>Press Ctrl + Alt + L for light mode, and Ctrl + Alt + D for dark mode.<br><br>You can also press Ctrl + Alt + F to toggle fullscreen!</p>
+            <p class="main-element n-font footer-element">Quick Tips:<br><br>Press Ctrl + Alt + L for light mode, and Ctrl + Alt + D for dark mode.<br><br>You can also press Ctrl + Alt + F to toggle fullscreen!<br><br>Please note that all items are saved in your browser. This means they will be cleared if you clear your browser cookies/data</p>
             <p class="main-element n-font footer-element">Made with love by Eli Steken :)</p>
         </div>
     </div>

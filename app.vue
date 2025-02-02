@@ -18,7 +18,6 @@ import { ref } from 'vue';
 import type { DialogInput, ModalAssign, ModalOptions, ModalVal } from './types';
 
 const accent = ref('rgb(75, 75, 75)');
-let mode:string;
 const items = ref({});
 const modal = ref<ModalVal>({
     open: false
@@ -42,7 +41,7 @@ const keydown = (event:KeyboardEvent) => {
 };
 
 onMounted(() => {
-    mode = localStorage.getItem('mode') as string;
+    const mode = localStorage.getItem('mode') as string;
 
     if (localStorage.getItem('items')) { // Load saved items, if possible
         try {
@@ -62,6 +61,16 @@ onMounted(() => {
     } else {
         SetMode(1);
     };
+
+    if(localStorage.getItem('alert') === null) {
+        modalAssign({
+            title: 'Welcome to Item Indexer! Please note that all items are saved in your browser, so they will be cleared when you clear your browsers cookies.',
+            submitTitle: 'Got It!',
+            action: (type) => {
+                localStorage.setItem('alert', 'true');
+            }
+        });
+    }
 });
 
 onBeforeUnmount(() => {
@@ -104,6 +113,8 @@ useSeoMeta({ // Set SEO information
     ogImage: 'https://raw.githubusercontent.com/Eli-Sterken/Item-Indexer/refs/heads/main/Logo.png',
     twitterCard: 'summary_large_image'
 });
+
+
 </script>
 
 <style>
