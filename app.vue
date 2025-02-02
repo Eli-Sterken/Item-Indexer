@@ -8,6 +8,7 @@
         <Items :items="items" :modal="modalAssign"></Items>
         <Modal v-if="modal.open" :title="modal.title" :submit-title="modal.submitTitle" :close-title="modal.closeTitle"
             :input="modal.input" @submit="OnModalSubmit"></Modal>
+        <Footer></Footer>   
     </div>
 
 </template>
@@ -94,6 +95,15 @@ function OnModalSubmit(type: 'submit' | 'close', value: string) {
         };
     };
 };
+
+useSeoMeta({ // Set SEO information
+    title: 'Item Indexer',
+    ogTitle: 'Item Indexer',
+    description: 'A funny app to index items by code',
+    ogDescription: 'A funny app to index items by code',
+    ogImage: 'https://raw.githubusercontent.com/Eli-Sterken/Item-Indexer/refs/heads/main/Logo.png',
+    twitterCard: 'summary_large_image'
+});
 </script>
 
 <style>
