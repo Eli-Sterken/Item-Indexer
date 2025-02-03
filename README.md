@@ -62,7 +62,7 @@ a few main files:
 
 # Notes
 
-1 - I will add a footer soon, just not in the inital release.
+1 - I will add a help box soon. (I'm mostly working on other things right now.)
 2 - Please note that your items are only saved to local storage, so they will be cleared 
 when you delete your browser's cookies and data.
 
