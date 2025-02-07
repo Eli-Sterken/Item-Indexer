@@ -8,7 +8,7 @@
         <Items :items="items" :modal="modalAssign"></Items>
         <Modal v-if="modal.open" :title="modal.title" :submit-title="modal.submitTitle" :close-title="modal.closeTitle"
             :input="modal.input" @submit="OnModalSubmit"></Modal>
-        <Footer></Footer>   
+        <Footer :src="src" @change-mode="ChangeMode"></Footer>   
     </div>
 
 </template>
@@ -19,6 +19,7 @@ import type {ModalAssign, ModalOptions, ModalVal } from './types';
 
 const accent = ref('rgb(75, 75, 75)');
 const items = ref({});
+const src = ref('/images/light.png');
 let mode:number;
 const modal = ref<ModalVal>({
     open: false
@@ -88,17 +89,28 @@ const modalAssign:ModalAssign = (options:ModalOptions) => {
     };
 };
 
-function SetMode(mode: number): void { // Function to set mode
-    if (mode != 1) {
+function ChangeMode():void {
+    console.log(mode);
+    if(mode === 0) {
+        SetMode(1);
+    } else {
+        SetMode(0);
+    };
+};
+
+function SetMode(functionMode: number): void { // Function to set mode
+    if (functionMode != 1) {
         document.body.style.backgroundColor = 'white';
         accent.value = 'rgb(200, 200, 200)';
         localStorage.setItem('mode', '0');
         mode = 0;
+        src.value = '/images/dark.png';
     } else {
         document.body.style.backgroundColor = 'rgb(35, 35, 35)';
         accent.value = 'rgb(75, 75, 75)';
         localStorage.setItem('mode', '1');
         mode = 1;
+        src.value = '/images/light.png';
     };
 };
 
