@@ -15,10 +15,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { DialogInput, ModalAssign, ModalOptions, ModalVal } from './types';
+import type {ModalAssign, ModalOptions, ModalVal } from './types';
 
 const accent = ref('rgb(75, 75, 75)');
 const items = ref({});
+let mode:number;
 const modal = ref<ModalVal>({
     open: false
 });
@@ -41,7 +42,7 @@ const keydown = (event:KeyboardEvent) => {
 };
 
 onMounted(() => {
-    const mode = localStorage.getItem('mode') as string;
+    const localMode = localStorage.getItem('mode');
 
     if (localStorage.getItem('items')) { // Load saved items, if possible
         try {
@@ -56,10 +57,13 @@ onMounted(() => {
 
     window.addEventListener('keydown', keydown);
 
-    if (mode != null) { // Load saved mode if possible
-        SetMode(Number(mode));
+    if (localMode) { // Load saved mode if possible
+        const numLocalMode = Number(localMode);
+        SetMode(numLocalMode);
+        mode = numLocalMode;
     } else {
-        SetMode(1);
+        localStorage.setItem('mode', '1');
+        mode = 1;
     };
 
     if(localStorage.getItem('alert') === null) {
@@ -89,10 +93,12 @@ function SetMode(mode: number): void { // Function to set mode
         document.body.style.backgroundColor = 'white';
         accent.value = 'rgb(200, 200, 200)';
         localStorage.setItem('mode', '0');
+        mode = 0;
     } else {
         document.body.style.backgroundColor = 'rgb(35, 35, 35)';
         accent.value = 'rgb(75, 75, 75)';
         localStorage.setItem('mode', '1');
+        mode = 1;
     };
 };
 
