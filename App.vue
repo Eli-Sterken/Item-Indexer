@@ -8,17 +8,19 @@
         <Items :items="items" :modal="modalAssign"></Items>
         <Modal v-if="modal.open" :title="modal.title" :submit-title="modal.submitTitle" :close-title="modal.closeTitle"
             :input="modal.input" @submit="OnModalSubmit"></Modal>
-        <Footer></Footer>   
+        <Footer :src="src" @change-mode="ChangeMode"></Footer>   
     </div>
 
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { DialogInput, ModalAssign, ModalOptions, ModalVal } from './types';
+import type {ModalAssign, ModalOptions, ModalVal } from './types';
 
 const accent = ref('rgb(75, 75, 75)');
 const items = ref({});
+const src = ref('/images/light.png');
+let mode:number;
 const modal = ref<ModalVal>({
     open: false
 });
@@ -41,7 +43,7 @@ const keydown = (event:KeyboardEvent) => {
 };
 
 onMounted(() => {
-    const mode = localStorage.getItem('mode') as string;
+    const localMode = localStorage.getItem('mode');
 
     if (localStorage.getItem('items')) { // Load saved items, if possible
         try {
@@ -56,10 +58,13 @@ onMounted(() => {
 
     window.addEventListener('keydown', keydown);
 
-    if (mode != null) { // Load saved mode if possible
-        SetMode(Number(mode));
+    if (localMode) { // Load saved mode if possible
+        const numLocalMode = Number(localMode);
+        SetMode(numLocalMode);
+        mode = numLocalMode;
     } else {
-        SetMode(1);
+        localStorage.setItem('mode', '1');
+        mode = 1;
     };
 
     if(localStorage.getItem('alert') === null) {
@@ -84,15 +89,28 @@ const modalAssign:ModalAssign = (options:ModalOptions) => {
     };
 };
 
-function SetMode(mode: number): void { // Function to set mode
-    if (mode != 1) {
+function ChangeMode():void {
+    console.log(mode);
+    if(mode === 0) {
+        SetMode(1);
+    } else {
+        SetMode(0);
+    };
+};
+
+function SetMode(functionMode: number): void { // Function to set mode
+    if (functionMode != 1) {
         document.body.style.backgroundColor = 'white';
         accent.value = 'rgb(200, 200, 200)';
         localStorage.setItem('mode', '0');
+        mode = 0;
+        src.value = '/images/dark.png';
     } else {
         document.body.style.backgroundColor = 'rgb(35, 35, 35)';
         accent.value = 'rgb(75, 75, 75)';
         localStorage.setItem('mode', '1');
+        mode = 1;
+        src.value = '/images/light.png';
     };
 };
 
