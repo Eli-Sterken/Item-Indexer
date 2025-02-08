@@ -1,4 +1,5 @@
 <template>
+    <div id="body"></div>
     <h1 class="rel-position main-element header">Welcome To Item Indexer!</h1>
     <h2 class="rel-position main-element header">To start using Item Indexer, add an item with a code and description
         below. Then search by code, and you will see the description</h2>
@@ -18,6 +19,7 @@ import { ref } from 'vue';
 import type {ModalAssign, ModalOptions, ModalVal } from './types';
 
 const accent = ref('rgb(75, 75, 75)');
+const bodyColor = ref('rgb(35, 35, 35)');
 const items = ref({});
 const src = ref('/images/light.png');
 let mode:number;
@@ -100,13 +102,13 @@ function ChangeMode():void {
 
 function SetMode(functionMode: number): void { // Function to set mode
     if (functionMode != 1) {
-        document.body.style.backgroundColor = 'white';
+        bodyColor.value = 'white';
         accent.value = 'rgb(200, 200, 200)';
         localStorage.setItem('mode', '0');
         mode = 0;
         src.value = '/images/dark.png';
     } else {
-        document.body.style.backgroundColor = 'rgb(35, 35, 35)';
+        bodyColor.value = 'rgb(35, 35, 35)';
         accent.value = 'rgb(75, 75, 75)';
         localStorage.setItem('mode', '1');
         mode = 1;
@@ -136,82 +138,87 @@ useSeoMeta({ // Set SEO information
 </script>
 
 <style>
-.rel-position {
-    position: relative;
-}
+    #body {
+        position: fixed;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: v-bind(bodyColor);
+    }
 
-.absPosition {
-    position: absolute;
-}
+    .rel-position {
+        position: relative;
+    }
 
-.full {
-    top: 0%;
-    left: 0%;
-    width: 100%;
-    height: 100%;
-}
+    .full {
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+    }
 
-.main-element {
-    background-color: #0073cf;
-    color: black;
-    text-align: center;
-    align-content: center;
-    border-radius: 7px;
-}
+    .main-element {
+        background-color: #0073cf;
+        color: black;
+        text-align: center;
+        align-content: center;
+        border-radius: 7px;
+    }
 
-.clickible {
-    border: none;
-    text-decoration: none;
-}
+    .clickible {
+        border: none;
+        text-decoration: none;
+    }
 
-.clickible:hover {
-    cursor: pointer;
-    opacity: 0.8;
-}
+    .clickible:hover {
+        cursor: pointer;
+        opacity: 0.8;
+    }
 
-.n-font {
-    font: bold;
-    font-size: large;
-}
+    .n-font {
+        font: bold;
+        font-size: large;
+    }
 
-.accent {
-    background-color: v-bind(accent);
-}
+    .accent {
+        background-color: v-bind(accent);
+    }
 
-.header {
-    width: 100%;
-    height: fit-content;
-}
+    .header {
+        width: 100%;
+        height: fit-content;
+    }
 
-.box {
-    width: 80%;
-    height: fit-content;
-    border-radius: 10px;
-    margin-bottom: 5%;
-}
+    .box {
+        width: 80%;
+        height: fit-content;
+        border-radius: 10px;
+        margin-bottom: 5%;
+    }
 
-.inputContaner {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    .inputContaner {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-.input {
-    width: 35%;
-    height: 10%;
-    margin-bottom: 2%;
-}
+    .input {
+        width: 35%;
+        height: 10%;
+        margin-bottom: 2%;
+    }
 
-.firstInput {
-    margin-top: 3%;
-}
+    .firstInput {
+        margin-top: 3%;
+    }
 
-#boxesContaner {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    height: fit-content;
-}
+    #boxesContaner {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: fit-content;
+    }
 </style>
