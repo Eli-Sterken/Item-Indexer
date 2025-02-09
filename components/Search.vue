@@ -26,7 +26,7 @@
 
     props.items.value = {'0':'Test'};
 
-    function Jump(item:string):void {
+    function Jump(item:string) {
         document.getElementById(item)?.scrollIntoView({
             behavior: "smooth"
         });
