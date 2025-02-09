@@ -9,7 +9,7 @@
         <Items :items="items" :modal="modalAssign"></Items>
         <Modal v-if="modal.open" :title="modal.title" :submit-title="modal.submitTitle" :close-title="modal.closeTitle"
             :input="modal.input" @submit="OnModalSubmit"></Modal>
-        <Footer :src="src" @change-mode="ChangeMode"></Footer>   
+        <Footer :src="src" :-set-mode="SetMode" :mode="mode"></Footer>   
     </div>
 
 </template>
@@ -22,7 +22,7 @@ const accent = ref('rgb(75, 75, 75)');
 const bodyColor = ref('rgb(35, 35, 35)');
 const items = ref({});
 const src = ref('/images/light.png');
-let mode:number;
+let mode = ref<number>(1);
 const modal = ref<ModalVal>({
     open: false
 });
@@ -63,10 +63,10 @@ onMounted(() => {
     if (localMode) { // Load saved mode if possible
         const numLocalMode = Number(localMode);
         SetMode(numLocalMode);
-        mode = numLocalMode;
+        mode.value = numLocalMode;
     } else {
         localStorage.setItem('mode', '1');
-        mode = 1;
+        mode.value = 1;
     };
 
     if(localStorage.getItem('alert') === null) {
@@ -91,9 +91,9 @@ const modalAssign:ModalAssign = (options:ModalOptions) => {
     };
 };
 
-function ChangeMode():void {
+function ChangeMode() {
     console.log(mode);
-    if(mode === 0) {
+    if(mode.value === 0) {
         SetMode(1);
     } else {
         SetMode(0);
@@ -105,13 +105,13 @@ function SetMode(functionMode: number): void { // Function to set mode
         bodyColor.value = 'white';
         accent.value = 'rgb(200, 200, 200)';
         localStorage.setItem('mode', '0');
-        mode = 0;
+        mode.value = 0;
         src.value = '/images/dark.png';
     } else {
         bodyColor.value = 'rgb(35, 35, 35)';
         accent.value = 'rgb(75, 75, 75)';
         localStorage.setItem('mode', '1');
-        mode = 1;
+        mode.value = 1;
         src.value = '/images/light.png';
     };
 };

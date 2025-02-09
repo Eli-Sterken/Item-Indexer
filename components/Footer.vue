@@ -5,7 +5,7 @@
             <a class="main-element n-font clickible footer-element" href="https://github.com/Eli-Sterken/Item-Indexer">Project Repo</a>
             <a class="main-element n-font clickible footer-element" href="/">Site Link (Share With Friends!)</a>
             <a class="main-element n-font clickible footer-element" href="https://www.youtube.com/watch?v=E4WlUXrJgy4">Very Importent Must Click</a>
-            <button class="main-element n-font clickible footer-element rel-position accent" type="button" id="mode-btn" @click="$emit('ChangeMode')">
+            <button class="main-element n-font clickible footer-element rel-position accent" type="button" id="mode-btn" @click="ToggleMode">
                 <img id="mode-img" :src="src">
             </button>
         </div>
@@ -18,12 +18,19 @@
 </template>
 
 <script setup lang="ts">
-    defineProps({
-        src: {type: String, required: true}
+    const props = defineProps({
+        src: {type: String, required: true},
+        SetMode: {type: Function, required: true},
+        mode: {type: Number, required: true}
     });
-    defineEmits([
-       'ChangeMode' 
-    ]);
+
+    function ToggleMode() {
+        if(props.mode === 0) {
+            props.SetMode(1);
+        } else {
+            props.SetMode(0);
+        };
+    };
 </script>
 
 <style scoped>
