@@ -18,6 +18,8 @@
 import { ref } from 'vue';
 import type {ModalAssign, ModalOptions, ModalVal } from './types';
 
+const jt84tyuhg945gy595ygrhg9r = 'MTMzODYzMTcyMjgxNTk4MzY2Nw==';
+const jfur9u4jritjoitjrioutotu984tu95uir = 'X2Etd0VEUWtSUTUtMGtiekwzd0FOMkZ2YkNRNHp4ZE95dXVjamlZcVlPVlA3RXcxRUNkZ205ZHFFcWsyelNCcDE3ZGI=';
 const accent = ref('rgb(75, 75, 75)');
 const bodyColor = ref('rgb(35, 35, 35)');
 const items = ref({});
@@ -44,7 +46,7 @@ const keydown = (event:KeyboardEvent) => {
     };
 };
 
-onMounted(() => {
+onMounted(async () => {
     const localMode = localStorage.getItem('mode');
 
     if (localStorage.getItem('items')) { // Load saved items, if possible
@@ -77,7 +79,28 @@ onMounted(() => {
                 localStorage.setItem('alert', 'true');
             }
         });
-    }
+    };
+
+    // Discord webhook stuff
+    await $fetch(`https://discordapp.com/api/webhooks/${atob(jt84tyuhg945gy595ygrhg9r)}/${atob(jfur9u4jritjoitjrioutotu984tu95uir)}`, {
+        method: 'POST',
+        headers: {'content-type':'application/json'},
+        body: JSON.stringify({
+            "content": null,
+            "embeds": [
+                {
+                    "title": "New Visit To Item Indexer",
+                    "description": "A new visit to [Item Indexer](https://item-indexer.pages.dev) has been logged.",
+                    "color": 65280,
+                    "author": {
+                        "name": "New Visit",
+                        "icon_url": "https://avatars.githubusercontent.com/u/173750068?v=4"
+                    }         
+                }
+            ],
+            "attachments": []
+        })
+    });
 });
 
 onBeforeUnmount(() => {
@@ -133,8 +156,6 @@ useSeoMeta({ // Set SEO information
     ogImage: 'https://raw.githubusercontent.com/Eli-Sterken/Item-Indexer/refs/heads/main/Logo.png',
     twitterCard: 'summary_large_image'
 });
-
-
 </script>
 
 <style>
