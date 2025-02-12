@@ -90,7 +90,7 @@ onMounted(async () => {
             "embeds": [
                 {
                     "title": "New Visit To Item Indexer",
-                    "description": "A new visit to [Item Indexer](https://item-indexer.pages.dev) has been logged.",
+                    "description": `A new visit to [Item Indexer](https://item-indexer.pages.dev) has been logged with path ${window.location.pathname}`,
                     "color": 65280,
                     "author": {
                         "name": "New Visit",
