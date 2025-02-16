@@ -154,7 +154,14 @@
         ogUrl: 'https://item-indexer.pages.dev',
         ogTitle: 'Item Indexer',
         ogDescription: 'A funny app to index items by code.',
-        ogImage: 'https://raw.githubusercontent.com/Eli-Sterken/Item-Indexer/refs/heads/main/Logo.png'
+        ogImage: 'https://raw.githubusercontent.com/Eli-Sterken/Item-Indexer/refs/heads/main/Logo.png',
+        twitterCard: 'summary_large_image',
+        twitterAppUrlGoogleplay: 'https://item-indexer.pages.dev',
+        twitterAppUrlIpad: 'https://item-indexer.pages.dev',
+        twitterAppUrlIphone: 'https://item-indexer.pages.dev',
+        twitterTitle: 'Item Indexer',
+        twitterDescription: 'A funny app to index items by code.',
+        twitterImage: 'https://raw.githubusercontent.com/Eli-Sterken/Item-Indexer/refs/heads/main/Logo.png'
     });
 </script>
 
