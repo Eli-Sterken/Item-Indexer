@@ -43,6 +43,7 @@
     height: 100%;
     overflow: auto;
     background: #fff3;
+    z-index: 1;
 
     &>.wrap {
         padding: 20px;

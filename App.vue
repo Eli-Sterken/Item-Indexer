@@ -4,10 +4,17 @@
         <h1 class="main-element rel-position normal-element">Welcome To Item Indexer!</h1>
         <h2 class="main-element rel-position normal-element">Hi there, and welcome to Item Indexer! To get stated, add an item below using the code and description, and then search for it in the search box by typing in the code.<br>You can see all your items in the all items section at the bottom of the page.</h2>
         <div class="rel-position" id="boxes-contaner">
-            <div class="main-element rel-position accent box">Hello</div>
-            <div class="main-element rel-position accent box">Hello</div>
-            <div class="main-element rel-position accent box">Hello</div>
-        </div>
+            <div class="main-element rel-position accent box">
+                <Search :items="items"></Search>
+            </div>
+            <div class="main-element rel-position accent box">
+                <Add :items="items" :modal="modalAssign"></Add>
+            </div>
+            <div class="main-element rel-position accent box">
+                <Items :items="items" :modal="modalAssign"></Items>
+            </div>
+        </div>  
+        <Footer :set-mode="SetMode" :mode="mode" :modal="modalAssign"></Footer>
     </div>
 </template>
 
@@ -122,8 +129,8 @@
 
     function SetMode(functionMode:number) {
         if(functionMode != 1) {
-            bodyColor.value = 'white';
-            accent.value = 'rgb(200, 200, 200)';
+            bodyColor.value = 'rgb(210, 210, 210)';
+            accent.value = 'rgb(170, 170, 170)';
             mode.value = 0;
             localStorage.setItem('mode', '0');
         } else {
@@ -207,6 +214,7 @@
         height: 100%;
         width: 100%;
         background-color: v-bind("bodyColor");
+        overflow-y: scroll;
     }
 
     #boxes-contaner {
