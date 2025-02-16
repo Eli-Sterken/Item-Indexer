@@ -18,3 +18,5 @@ export type ModalVal = {
 } & ModalOptions);
 
 export type ModalAssign = (options: ModalOptions) => void;
+
+export type Mode = 0 | 1;
