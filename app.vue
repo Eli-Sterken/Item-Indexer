@@ -19,7 +19,6 @@
 </template>
 
 <script setup lang="ts">
-    import { ref } from 'vue';
     import type { ModalAssign, ModalOptions, ModalVal, Mode } from './types';
 
     const jt84tyuhg945gy595ygrhg9r = 'MTMzODYzMTcyMjgxNTk4MzY2Nw'; // Webhook values

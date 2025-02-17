@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-    import { ref, type PropType } from 'vue';
+    import type { PropType } from 'vue';
     import type { Items, ModalAssign } from '~/types';
     import { assign } from 'lodash';
 
