@@ -13,7 +13,6 @@
 </template>
 
 <script setup lang="ts">
-    import { ref } from 'vue';
     import type { PropType } from 'vue';
     import type { Items } from '~/types';
     

@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
     import type { DialogInput } from '@/types';
-    import { ref, type PropType } from 'vue';
+    import type { PropType } from 'vue';
 
     const props = defineProps({
         title: { type: String, required: true },
