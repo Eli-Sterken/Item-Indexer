@@ -117,6 +117,7 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
+        overflow: hidden;
     }
 
     .footer-box {
