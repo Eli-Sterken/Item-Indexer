@@ -1,64 +1,60 @@
 <template>
-    <div class="box rel-position accent">
-        <h3 class="main-element rel-position header">Add An Item</h3>
-        <h4 class="main-element rel-position header">To add an item, enter a new code and description below, and then
-            click "Add"!</h4>
-        <form class="rel-position inputContaner" @submit.prevent="add">
-            <input class="main-element rel-position n-font input clickible firstInput" type="number"
-                placeholder="New Item Code" v-model="newCode" required>
-            <input class="main-element rel-position n-font input clickible" type="text"
-                placeholder="New Item Discription" v-model="newDisc" required>
-            <button class="main-element rel-position n-font input clickible" type="submit">Add</button>
-        </form>
-        <p class="main-element rel-position input n-font" id="addWarning">Please note - While you can add an item with a
-            code that is not a number, you can not search for it.</p>
-    </div>
+    <h3 class="main-element rel-position normal-element">Add An Item</h3>
+    <h4 class="main-element rel-position normal-element">To add an item, type a new code and descriptipn in the boxes below. Then click "Add" to add the item.</h4>
+    <form @submit.prevent="Add" class="rel-position" id="add-form">
+        <input type="number" class="main-element rel-position clickible n-font form-element" required placeholder="New Item Code" v-model="code">
+        <input type="text" class="main-element rel-position clickible n-font form-element" required placeholder="New Item Description" v-model="description">
+        <button class="main-element rel-position clickible n-font form-element" type="submit">Add</button>
+    </form>
 </template>
 
 <script setup lang="ts">
-import type { ModalAssign } from '@/types';
-import { assign } from 'lodash';
-import { ref, type PropType } from 'vue';
+    import type { PropType } from 'vue';
+    import type { Items, ModalAssign } from '~/types';
+    import { assign } from 'lodash';
 
-const props = defineProps({
-    items: { type: Object, required: true },
-    modal: {
-        type: Function as PropType<ModalAssign>,
-        required: true
-    }
-});
-const newCode = ref('');
-const newDisc = ref('');
+    const code = ref('');
+    const description = ref('');
+    const props = defineProps({
+        items: {type: Object as PropType<Items>, required: true},
+        modal: {type: Function as PropType<ModalAssign>, required: true}
+    });
 
-function FinalizeAdd() {
-    assign(props.items, { [newCode.value]: newDisc.value });
-    delete props.items.value;
-    localStorage.setItem('items', JSON.stringify(props.items));
-    newCode.value = '';
-    newDisc.value = '';
-};
-
-function add(): void { // Function to add an item
-    if(newCode.value in props.items) {
-        props.modal({
-            title: `Item ${newCode.value} already exists, do you want to replace it?`,
-            submitTitle: 'Yes',
-            closeTitle: 'No',
-            action: (type) => {
-                if(type === 'submit') {
-                    FinalizeAdd();
+    function Add() { // Adds an item
+        if(code.value in props.items) {
+            props.modal({ // Ask if the user wants to override the item if it already exists
+                title: `Item ${code.value} already exists, are you sure you want to replace it?`,
+                submitTitle: "Yes",
+                closeTitle: "No",
+                action: (type) => {
+                    if(type === 'submit') {
+                        FinalizeAdd();
+                    }; 
                 }
-            }
-        });
-    } else {
-        FinalizeAdd();
-    }
-    
-};
+            }); 
+        } else {
+            FinalizeAdd();
+        };
+    };
+
+    function FinalizeAdd() { // Function to actualy add the item
+        assign(props.items, {[code.value]:description.value});
+        localStorage.setItem('items', JSON.stringify(props.items));
+        document.getElementsByTagName('form')[0].reset();
+    };
 </script>
 
 <style scoped>
-#addWarning {
-    width: 100%;
-}
+    .form-element {
+        width: 25%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+
+    #add-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 </style>

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="wrap">
             <div class="modal accent">
-                <h3 class="main-element rel-position header">{{ title }}</h3>
+                <h3 class="main-element rel-position normal-element header">{{ title }}</h3>
                 <form class="dialog-form" @submit.prevent>
                     <input class="main-element n-font clickible rel-position form-el" id="dialogInput"
                         :type="input?.type ? input.type : 'hidden'" :placeholder="input?.placeholder" required v-model="inputVal">
@@ -17,22 +17,21 @@
 </template>
 
 <script setup lang="ts">
-import type { DialogInput } from '@/types';
-import { ref, type PropType } from 'vue';
+    import type { DialogInput } from '@/types';
+    import type { PropType } from 'vue';
 
-const props = defineProps({
-    title: { type: String, required: true },
-    input: { type: Object as PropType<DialogInput>, required: false },
-    submitTitle: { type: String, required: true },
-    closeTitle: { type: String, required: false }
-});
-const emit = defineEmits(['submit']);
-const inputVal = ref('');
+    const props = defineProps({
+        title: { type: String, required: true },
+        input: { type: Object as PropType<DialogInput>, required: false },
+        submitTitle: { type: String, required: true },
+        closeTitle: { type: String, required: false }
+    });
+    const emit = defineEmits(['submit']);
+    const inputVal = ref('');
 
-function DialogSubmit(type: 'close' | 'submit'): void {
-
-    emit('submit', type, inputVal.value); 
-};
+    function DialogSubmit(type: 'close' | 'submit'): void {
+        emit('submit', type, inputVal.value); 
+    };
 </script>
 
 <style scoped lang="scss">
@@ -44,6 +43,7 @@ function DialogSubmit(type: 'close' | 'submit'): void {
     height: 100%;
     overflow: auto;
     background: #fff3;
+    z-index: 1;
 
     &>.wrap {
         padding: 20px;
