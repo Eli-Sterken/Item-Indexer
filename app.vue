@@ -18,8 +18,8 @@
 import { ref } from 'vue';
 import type {ModalAssign, ModalOptions, ModalVal } from './types';
 
-const jt84tyuhg945gy595ygrhg9r = 'MTMzODYzMTcyMjgxNTk4MzY2Nw==';
-const jfur9u4jritjoitjrioutotu984tu95uir = 'X2Etd0VEUWtSUTUtMGtiekwzd0FOMkZ2YkNRNHp4ZE95dXVjamlZcVlPVlA3RXcxRUNkZ205ZHFFcWsyelNCcDE3ZGI=';
+const jt84tyuhg945gy595ygrhg9r = 'MTM0MTE1NjQxMTc4MjA3MDM4Mg';
+const jfur9u4jritjoitjrioutotu984tu95uir = 'ZzJhbGNCaURwX1YxbExZY21USkNKeHF1cF9ZNUZEeklleFlnaUgtcW40dXBPMW85Rkd3RXVfTHB1MDY4dl8wVFNldmM';
 const accent = ref('rgb(75, 75, 75)');
 const bodyColor = ref('rgb(35, 35, 35)');
 const items = ref({});
