@@ -1,40 +1,47 @@
 <template>
-    <div class="box rel-position accent">
-            <h3 class="main-element rel-position header">Search For An Item</h3>
-            <h4 class="main-element rel-position header">To search for an item, enter it's code below:</h4>
-            <div class="rel-position inputContaner">
-                    <input class="main-element clickible n-font rel-position input firstInput" type="number" placeholder="Item Code" v-model="query">
-            </div>
-            <p class="rel-position main-element header n-font">
-                <div v-if="query in items">
-                    <span class="main-element">{{ items[query] }}  -  </span>
-                    <button class="main-element n-font rel-position clickible" id="resultDelete" @click="Jump(query)">Jump To Item {{ query }}</button>
-                </div>
-                <span v-else-if="query === ''">Start searching to find an item! (Don't froget that search only activates when you type numbers)</span>
-                <span v-else>Item Not Found (Make sure you're searching for the code, and not the description!)</span>
-            </p>
-        </div>
+    <h3 class="main-element rel-position normal-element">Search For Items</h3>
+    <h4 class="main-element rel-position normal-element">To search for an item, type its code in the search box below. Then click "Jump To Item" to view it in the all items section.</h4>
+    <div class="rel-position" id="input-contaner">
+        <input type="text" class="main-element rel-position clickible n-font" id="query" placeholder="Item Code" v-model="query">
+    </div>
+    <div class="main-element rel-position normal-element result" v-if="query in items">
+        <p class="main-element rel-position normal-element n-font">{{ items[query] }}</p>
+        <button class="main-element rel-position clickible n-font" type="button" @click="Jump()">Jump To Item {{ query }}</button>
+    </div>
+    <p class="main-element rel-position normal-element n-font result" v-else-if="query === ''">Start Searching To Find An Item</p>
+    <p class="main-element rel-position normal-element n-font result" v-else>Item Not Found</p>
 </template>
 
 <script setup lang="ts">
-    import { defineComponent, reactive, ref} from 'vue';
+    import type { PropType } from 'vue';
+    import type { Items } from '~/types';
     
     const query = ref('');
     const props = defineProps({
-        items: {type: Object, required: true}
-    });
+        items: {type: Object as PropType<Items>, required: true}
+    }); 
 
-    props.items.value = {'0':'Test'};
-
-    function Jump(item:string) {
-        document.getElementById(item)?.scrollIntoView({
-            behavior: "smooth"
+    function Jump() {
+        document.getElementById(query.value)?.scrollIntoView({
+            behavior: 'smooth',
         });
     };
 </script>
 
 <style scoped>
-    #resultDelete {
-        background-color: #0b579e;
+    .result {
+        width: 100%;
+    }
+
+    #input-contaner {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    #query {
+        width: 30%;
     }
 </style>
