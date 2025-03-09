@@ -1,6 +1,6 @@
 # Welcome to Item Indexer!
 
-<img src="/Logo.png" alt="Item Indexer Logo" width="300" height="200">
+<img src="/.github/images/Logo.png" alt="Item Indexer Logo" width="300" height="200">
 
 [item-indexer.pages.dev](https://item-indexer.pages.dev)
 

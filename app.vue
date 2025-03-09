@@ -1,6 +1,7 @@
 <template>
     <div id="body-color">
         <Modal v-if="modal.open" :title="modal.title" :submit-title="modal.submitTitle" :close-title="modal.closeTitle" :input="modal.input" @submit="OnModalSubmit"></Modal>
+        <Misty v-if="!savemisty"></Misty>
         <h1 class="main-element rel-position normal-element">Welcome To Item Indexer!</h1>
         <h2 class="main-element rel-position normal-element">Hi there, and welcome to Item Indexer! To get stated, add an item below using the code and description, and then search for it in the search box by typing in the code.<br>You can see all your items in the all items section at the bottom of the page.</h2>
         <div class="rel-position" id="boxes-contaner">
@@ -27,6 +28,7 @@
     const bodyColor = ref('rgb(35, 35, 35)');
     const mode = ref<Mode>(0);
     const items = ref({});
+    const savemisty = ref(false);
     const modal = ref<ModalVal>({
         open: false
     });
@@ -57,6 +59,7 @@
     onMounted(async () => { // Client side only stuff
         const localItems = localStorage.getItem('items');
         const localMode = localStorage.getItem('mode');
+        const localMisty = localStorage.getItem('misty');
 
         window.addEventListener('keydown', keydown);
 
@@ -74,6 +77,12 @@
             SetMode(Number(localMode));
         } else {
             localStorage.setItem('mode', '1');
+        };
+
+        if(localMisty != 'true') {
+            savemisty.value = false;
+        } else {
+            savemisty.value = true;
         };
 
         if(!localStorage.getItem('seenAlert') || localStorage.getItem('seenAlert') === 'false') { // Show welcome alert, if new user
