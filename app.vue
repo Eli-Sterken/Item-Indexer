@@ -175,6 +175,7 @@
         color: black;
         border-radius: 5px;
         text-align: center;
+        font-family: 'Open Sans', sans-serif;
         align-content: center;
         word-wrap: break-word;
     }
