@@ -198,8 +198,7 @@
     .clickible:hover {
         cursor: pointer;
         opacity: 0.7;
-        animation: pulse;
-        animation-duration: 1s;
+        animation: pulse 1s;
     }
 
     .accent {
