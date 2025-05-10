@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     },
     $development: {
         hub: {
-            remote: false
+            remote: true
         }
     },
     css: [
