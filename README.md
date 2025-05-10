@@ -80,7 +80,7 @@ If you like this project and want to connect with me or other programmers, use t
 
 Reddit - [u/eli_sterken](https://reddit.com/user/eli_sterken)
 
-Discord - Coming Soon!
+Discord - [Item Indexer](https://discord.gg/Zr7XXEZCuD)
 
 ## Notes
 
